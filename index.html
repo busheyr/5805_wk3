@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Introduction to Systems Thinking</title>
+<title>Lecture: Systems Thinking and Organizational Analysis</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; }
 html { font-size: 62.5%; min-height:100%; max-width:100vw; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -41,9 +41,10 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 .split { display:grid; grid-template-columns:minmax(0,1fr) minmax(28rem,.8fr); gap:3rem; align-items:start; }
 .panel { border:1px solid var(--line); border-radius:.8rem; padding:2.2rem; background:#fff; }
 .panel.green { border-left:.5rem solid var(--green); }
-.grid-3, .grid-2 { display:grid; gap:1.8rem; margin-top:2rem; }
+.grid-3, .grid-2, .grid-4 { display:grid; gap:1.8rem; margin-top:2rem; }
 .grid-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.grid-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
 .mini-card { border:1px solid var(--line); border-radius:.8rem; padding:2rem; background:#fff; min-height:100%; }
 .mini-card h3, .mini-card h4 { color:#0d3155; }
 .reveal-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(23rem,1fr)); gap:1.6rem; margin-top:2rem; }
@@ -81,9 +82,17 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 .continue-btn { width:100%; border:0; border-radius:.8rem; background:#006649; color:#fff; min-height:6.4rem; font-size:1.9rem; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 .4rem 1.6rem rgba(0,102,73,.18); transition:background .2s ease, transform .2s ease; }
 .continue-btn:hover { background:#00563e; transform:translateY(-1px); }
 .continue-btn:focus-visible { outline:.3rem solid #7dbaff; outline-offset:.3rem; }
+.lens-stack { display:grid; gap:1.4rem; margin-top:2.4rem; }
+.lens-item { border-left:.5rem solid var(--blue); background:#fff; border-radius:.8rem; padding:1.8rem 2rem; box-shadow:0 .3rem 1.2rem rgba(0,0,0,.04); }
+.lens-item:nth-child(even) { border-left-color:var(--green); }
+.mechanism-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.6rem; margin-top:2rem; }
+.mechanism-card { background:#fff; border:1px solid var(--line); border-radius:.8rem; padding:2rem; border-top:.5rem solid var(--blue); }
+.mechanism-card:nth-child(even) { border-top-color:var(--green); }
+.prompt-card { background:#10243a; color:#fff; border-radius:.8rem; padding:2.4rem; margin-top:2.6rem; font-weight:700; }
+.prompt-card p { margin-bottom:0; }
 @media (max-width:850px) {
   .rise-shell__header { align-items:flex-start; flex-direction:column; }
-  .split, .grid-2, .grid-3, .choice-block, .comparison { grid-template-columns:1fr; }
+  .split, .grid-2, .grid-3, .grid-4, .choice-block, .comparison, .mechanism-list { grid-template-columns:1fr; }
   .rise-block { padding:3rem 2rem; margin-block:4rem; }
   .rise-page { padding:0 1.8rem; }
 }
@@ -100,249 +109,307 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 </svg>
 
 <div class="cover-screen" id="cover">
-  <div class="cover-title">Introduction to Systems Thinking</div>
-  <button class="cover-btn" id="coverBegin">Begin</button>
+  <div class="cover-title">Lecture: Systems Thinking and Organizational Analysis</div>
+  <button class="cover-btn" id="coverBegin">Welcome to Week 3</button>
 </div>
 
 <div class="rise-shell">
 <header class="rise-shell__header">
-  <div class="rise-shell__title">Introduction to Systems Thinking</div>
-  <div class="rise-shell__meta">Introduction to Systems Thinking</div>
+  <div class="rise-shell__title">Lecture: Systems Thinking and Organizational Analysis</div>
+  <div class="rise-shell__meta">Welcome to Week 3</div>
 </header>
 <main class="rise-shell__body">
 <div class="rise-page">
 
 <section class="rise-block hero">
-  <h1>Introduction to Systems Thinking</h1>
-  <p>Systems thinking is an approach to interpretation and decision-making that examines how parts of a whole interact over time. Instead of treating a problem as a single event caused by one person, one department, or one visible failure, systems thinking asks how relationships, incentives, information flows, structures, and feedback patterns produce the outcomes we observe.</p>
-  <div class="callout">Organizations are interconnected systems, not isolated functions; changes in one area can reshape behavior throughout the whole.</div>
+  <h1>Lecture: Systems Thinking and Organizational Analysis</h1>
+  <h2>Welcome to Week 3</h2>
+  <p>Welcome back. Last week, we examined organizational culture, what it is, how it forms, and how leadership either reinforces or disrupts it. This week, we are going to zoom out even further.</p>
+  <p class="callout2">We are going to stop looking at individual problems and start looking at the system that is producing them.</p>
+  <p>That shift from problem-focused thinking to systems-level thinking is one of the most important transitions a leader can make. And it is harder than it sounds. Most of us are trained to find the problem, fix the problem, and move on. Systems thinking asks you to slow down and ask a different question: Why does this problem keep coming back?</p>
+  <div class="callout">By the end of this week, you will be able to map your organization as a system, identify where that system is breaking down, and pinpoint the specific places where a well-placed leadership intervention can produce lasting change. That is what the Organizational Systems Analysis assignment is asking you to do — and this lecture will give you the tools to do it.</div>
 </section>
 
 <section class="rise-block tint">
-  <h2>Purpose of the Approach</h2>
+  <h2>Section 1: What Is Systems Thinking?</h2>
   <div class="split">
     <div>
-      <p>Its purpose is practical as well as analytical. A systems thinker learns to see patterns beneath symptoms, to anticipate consequences that may emerge later or elsewhere, and to design interventions that improve the conditions under which people work. In organizations, this means viewing performance, culture, learning, safety, and innovation as products of interdependent arrangements rather than isolated acts of individual effort.</p>
+      <p>Let us start with the most fundamental idea of this week: organizations are systems, not machines.</p>
+      <p>A machine is designed to do one thing. You can take it apart, fix the broken piece, put it back together, and it works again. Organizations do not work that way. In an organization, every part is connected to every other part. A decision made in HR affects operations. A communication breakdown in middle management affects frontline performance. A shift in leadership tone at the top affects whether people on the ground feel safe enough to speak up.</p>
+      <p>This is what systems thinkers mean when they say you cannot understand a system by looking at its parts in isolation. The behavior of the system emerges from the relationships between the parts — not from the parts themselves.</p>
     </div>
     <div class="panel green">
-      <h3>Three Core Moves</h3>
-      <ul class="circle-list">
-        <li><div class="circle-num">1</div><span><strong>Relationships:</strong> Understanding relationships is often more important than analyzing individual components, because components gain meaning through the roles they play in relation to one another.</span></li>
-        <li><div class="circle-num">2</div><span><strong>Patterns:</strong> Systems thinking studies recurring patterns, not only isolated incidents. A repeated delay, error, or conflict usually signals an underlying structure that makes the pattern likely.</span></li>
-        <li><div class="circle-num">3</div><span><strong>Design:</strong> Problems often arise from system design rather than individual performance. This perspective shifts inquiry from blame toward learning, redesign, and shared accountability.</span></li>
-      </ul>
+      <p>This has a direct and practical implication for leadership: when something goes wrong in your organization, the cause is almost never where it appears to be. The symptom shows up in one place, but the structural cause is usually somewhere else entirely. A leader who only treats the symptom will be treating the same symptom again in six months.</p>
+      <p>Systems thinking gives you the discipline to look for the structure that is producing the outcome — and to intervene there, rather than at the surface.</p>
     </div>
+  </div>
+  <div class="prompt-card">
+    <p>Key Question for This Week: When you look at a problem in your organization, are you seeing the symptom or the cause? Are you on the dance floor reacting, or on the balcony observing?</p>
   </div>
 </section>
 
+<section class="rise-block alt">
+  <h2>Section 2: The Structure of the Organizational System — Schein, Chapter 2</h2>
+  <p>Before you can analyze a system, you have to be able to see it clearly. And one of the most important things Schein teaches us is that most of what drives organizational behavior is invisible.</p>
+  <p>In Chapter 2, Schein describes the structure of organizational culture as operating at three levels simultaneously:</p>
+  <div class="rise-tabs">
+    <button class="tab-btn active" type="button" data-group="schein-levels" data-target="schein-level-1">Level 1 — Artifacts</button>
+    <button class="tab-btn" type="button" data-group="schein-levels" data-target="schein-level-2">Level 2 — Espoused Values</button>
+    <button class="tab-btn" type="button" data-group="schein-levels" data-target="schein-level-3">Level 3 — Underlying Assumptions</button>
+  </div>
+  <div class="tab-content active" data-group="schein-levels" id="schein-level-1">
+    <div class="panel">
+      <p>Level 1 — Artifacts: These are the visible, tangible elements of the organization. The org chart. The meeting structure. The way people dress. The physical layout of the office. The language used in emails. These are real, and they tell you something — but they do not tell you everything. In fact, they can be misleading. An organization can have a beautiful mission statement on the wall and a completely different set of operating norms in practice.</p>
+    </div>
+  </div>
+  <div class="tab-content" data-group="schein-levels" id="schein-level-2">
+    <div class="panel">
+      <p>Level 2 — Espoused Values: These are the stated beliefs, goals, and principles of the organization. What the strategic plan says. What the leadership team claims to prioritize. What the employee handbook promises. Again, these are real — but they are only reliable when they are consistent with what you actually observe at Level 1. When there is a gap between what is stated and what is practiced, that gap is diagnostic. It tells you something important about the system.</p>
+    </div>
+  </div>
+  <div class="tab-content" data-group="schein-levels" id="schein-level-3">
+    <div class="panel green">
+      <p>Level 3 — Underlying Assumptions: This is the deepest level, and it is the one that actually runs the organization. These are the unspoken, taken-for-granted beliefs that no one questions because everyone simply assumes they are true. "We do not challenge leadership decisions here." "Speed matters more than accuracy." "Relationships are more important than processes." These assumptions are rarely written down, rarely discussed, and yet they govern behavior more powerfully than any policy or procedure.</p>
+    </div>
+  </div>
+  <p>Why does this matter for systems thinking?</p>
+  <p>Because when you are trying to diagnose why your organization is underperforming, you need to know which level the problem is actually operating at. If the problem is at Level 3 — in the underlying assumptions — then no amount of new policy, new technology, or new process will fix it. You have to go deeper.</p>
+  <p class="quote-line">Schein's three-level model is your first systems mapping tool. When you sit down to analyze your organization this week, start by asking: What do I see? What is stated? And what is actually assumed? The distance between those three answers is where the system's problems live.</p>
+</section>
+
 <section class="rise-block">
-  <h2>From Event Thinking to Systems Thinking</h2>
-  <p class="quote-line">Systems thinking widens the frame of analysis before narrowing toward action.</p>
+  <h2>Section 3: Getting on the Balcony — Heifetz and Laurie</h2>
+  <p>Now that we have a framework for understanding what the organizational system is made of, we need to talk about how a leader positions themselves to actually see it.</p>
+  <p>Heifetz and Laurie offer one of the most enduring metaphors in leadership literature: the balcony and the dance floor.</p>
   <div class="comparison">
     <div class="panel">
-      <h3>Narrow Interpretation</h3>
-      <p>A narrow interpretation treats a problem as a single event caused by one person, one department, or one visible failure. This can produce fast explanations, but it often misses the relationships, incentives, information flows, structures, and feedback patterns that produce the outcomes we observe.</p>
+      <h3>Dance Floor</h3>
+      <p>Imagine a ballroom. On the dance floor, you are in the middle of the action. You can see the people immediately around you. You can feel the energy, respond to what is happening in real time, and stay engaged in the moment. This is where most leaders spend most of their time — and it is necessary. You cannot lead from a distance.</p>
+      <p>But from the dance floor, you cannot see the whole room. You cannot see the patterns. You cannot see that the same argument keeps happening in the same corner. You cannot see that two groups of people are moving in completely different directions. You cannot see the bottleneck forming near the exit.</p>
     </div>
     <div class="panel">
-      <h3>Systems Interpretation</h3>
-      <p>A systems interpretation asks how parts of a whole interact over time. It does not remove individual responsibility; it places action inside the conditions that make some choices, constraints, and outcomes more likely than others.</p>
+      <h3>Balcony</h3>
+      <p>For that, you need to get on the balcony.</p>
+      <p>From the balcony, you can observe the system as a whole. You can see patterns that are invisible at ground level. You can see where the energy is flowing and where it is blocked. You can see which relationships are functional and which are creating friction. You can see the difference between a problem that is new and a problem that is structural.</p>
+      <p>The discipline of systems thinking is, in large part, the discipline of getting on the balcony.</p>
     </div>
   </div>
-</section>
-
-<section class="rise-block alt">
-  <h2>Organizational Systems and Interdependencies</h2>
-  <p>An organizational system includes the people, tools, routines, policies, technologies, norms, and external pressures that interact to produce work. These elements are not merely arranged side by side; they shape one another. A policy changes incentives, incentives shape behavior, behavior affects performance data, and performance data influence future policy choices.</p>
-  <div class="accordion">
-    <div class="accordion-item open">
-      <div class="accordion-header">Interdependence</div>
-      <div class="accordion-content">
-        <p>Interdependence means that no unit is fully self-contained. A team may appear responsible for an outcome, yet that outcome may depend on upstream information, staffing levels, budget rules, leadership priorities, customer expectations, and the design of the work itself. Systems thinking therefore widens the frame of analysis before narrowing toward action.</p>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Inputs, processes, and outputs</div>
-      <div class="accordion-content">
-        <p><strong>Inputs, processes, and outputs</strong> provide a basic way to map how work is transformed. Inputs such as information, materials, time, expertise, and funding enter a process; routines and decisions transform them; outputs emerge as products, services, decisions, or learning. The quality of an output cannot be interpreted without examining the conditions built into the input and process stages.</p>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Dependencies</div>
-      <div class="accordion-content">
-        <p><strong>Dependencies between departments, teams, and leadership</strong> determine whether work flows smoothly or becomes fragmented. A hiring process, for example, may depend on accurate role definitions from managers, timely approvals from finance, inclusive search practices from human resources, and clear strategic priorities from executives.</p>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Misalignment</div>
-      <div class="accordion-content">
-        <p><strong>Misalignment between functions</strong> creates inefficiency when different parts of the system optimize for different goals. A sales unit rewarded for rapid growth may create demand that operations cannot support, while operations may be judged for stability and cost control. Neither unit is necessarily failing; the system may be rewarding incompatible forms of success.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="rise-block">
-  <h2>Feedback Loops and Performance</h2>
-  <p>Feedback occurs when the results of an action return to influence future action. In human systems, feedback may appear as metrics, stories, complaints, informal reputation, budget changes, morale, turnover, or leadership attention. Because feedback changes behavior, it is central to understanding why systems stabilize, deteriorate, or improve.</p>
-  <div class="rise-tabs">
-    <button class="tab-btn active" type="button" data-group="feedback" data-target="feedback-reinforcing">Reinforcing</button>
-    <button class="tab-btn" type="button" data-group="feedback" data-target="feedback-balancing">Balancing</button>
-    <button class="tab-btn" type="button" data-group="feedback" data-target="feedback-performance">Performance</button>
-  </div>
-  <div class="tab-content active" data-group="feedback" id="feedback-reinforcing">
-    <div class="panel">
-      <p><strong>Reinforcing feedback loops</strong> amplify a pattern. When success attracts resources, resources improve performance, and improved performance attracts still more support, the loop can generate growth. The same structure can also amplify harm: understaffing can increase workload, workload can increase burnout, burnout can cause departures, and departures can worsen understaffing.</p>
-      <ul>
-        <li><strong>Direction of change matters:</strong> Reinforcing loops do not mean "good" loops; they mean self-amplifying loops that can accelerate improvement or decline.</li>
-        <li><strong>Early intervention matters:</strong> Because reinforcing loops gain momentum, small structural changes made early may prevent large downstream consequences.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="tab-content" data-group="feedback" id="feedback-balancing">
-    <div class="panel">
-      <p><strong>Balancing feedback loops</strong> counteract change and move a system toward a goal, norm, or constraint. A budget review process may slow spending when costs rise; a supervisor may redistribute work when one employee becomes overloaded; a quality control process may detect errors before they reach customers.</p>
-      <ul>
-        <li><strong>Stability has a cost:</strong> Balancing loops protect consistency, but they can also preserve outdated routines when adaptation is needed.</li>
-        <li><strong>Targets shape behavior:</strong> The goal embedded in a balancing loop determines what the system treats as normal, acceptable, or urgent.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="tab-content" data-group="feedback" id="feedback-performance">
-    <div class="panel green">
-      <p><strong>Systems can unintentionally reinforce poor performance</strong> when the feedback people receive rewards short-term fixes over durable improvement. If leaders praise crisis response but ignore prevention, employees may learn that visible rescue work matters more than quiet process improvement.</p>
-      <ul>
-        <li><strong>Measurement can distort attention:</strong> What is counted often becomes what is managed, even when important dimensions of quality, equity, trust, or learning are difficult to measure.</li>
-        <li><strong>Delayed feedback can hide causality:</strong> A decision that appears successful today may create costs months later, making the original cause difficult to recognize.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="rise-block section-divider">
-  <h2>Finding Constraints</h2>
-</section>
-
-<section class="rise-block">
-  <h2>Before Looking for Constraints</h2>
-  <p>A constraint is a feature of the system that limits performance, learning, responsiveness, or equity. Constraints are not always obvious. They may appear as slow approvals, missing information, conflicting priorities, limited authority, inaccessible tools, or cultural norms that discourage raising concerns.</p>
-  <p>Identifying constraints requires distinguishing between the place where a problem is visible and the place where it is produced. A frontline team may experience late work, but the deeper constraint may be an approval rule, an overloaded specialist, a poorly designed handoff, or a leadership practice that creates ambiguity.</p>
   <div class="continue-wrap">
-    <button class="continue-btn" type="button" data-reveal-target="constraint-types">Explore Constraint Types</button>
+    <button class="continue-btn" type="button" data-reveal-target="technical-adaptive">Technical Problems and Adaptive Challenges</button>
   </div>
 </section>
 
-<section class="rise-block tint" id="constraint-types" hidden>
-  <h2>Identifying System Constraints</h2>
+<section class="rise-block tint" id="technical-adaptive" hidden>
+  <h2>Technical Problems and Adaptive Challenges</h2>
+  <p>Heifetz and Laurie also introduce a distinction that is critical for this week's assignment: the difference between technical problems and adaptive challenges.</p>
   <div class="choice-block">
     <div class="choice-menu">
-      <button class="choice-btn active" type="button" data-choice-group="constraints" data-choice-target="constraints-bottlenecks">Bottlenecks</button>
-      <button class="choice-btn" type="button" data-choice-group="constraints" data-choice-target="constraints-delays">Delays</button>
-      <button class="choice-btn" type="button" data-choice-group="constraints" data-choice-target="constraints-barriers">Structural barriers</button>
+      <button class="choice-btn active" type="button" data-choice-group="problems" data-choice-target="technical-problem">Technical Problem</button>
+      <button class="choice-btn" type="button" data-choice-group="problems" data-choice-target="adaptive-challenge">Adaptive Challenge</button>
+      <button class="choice-btn" type="button" data-choice-group="problems" data-choice-target="significant-problems">Significant Problems</button>
     </div>
     <div>
-      <div class="choice-panel active panel" id="constraints-bottlenecks" data-choice-group="constraints">
-        <p><strong>Bottlenecks and inefficiencies</strong> occur when one part of the system has less capacity than the demand placed upon it. Adding effort elsewhere will not solve the problem if the limiting step remains unchanged. A systems thinker therefore asks where work queues, where decisions wait, and where expertise is concentrated too narrowly.</p>
+      <div class="choice-panel active panel" id="technical-problem" data-choice-group="problems">
+        <p>A technical problem is one that has a known solution. The process is broken — fix the process. The software is outdated — upgrade the software. These problems are real and they matter, but they do not require systems-level thinking. They require competent execution.</p>
       </div>
-      <div class="choice-panel panel" id="constraints-delays" data-choice-group="constraints">
-        <p><strong>Delays in communication or decision-making</strong> weaken learning because the system receives information too late to adapt effectively. Delays also encourage misinterpretation: people may respond to outdated conditions, overcorrect, or blame others for effects whose causes are distant in time.</p>
+      <div class="choice-panel panel" id="adaptive-challenge" data-choice-group="problems">
+        <p>An adaptive challenge is fundamentally different. An adaptive challenge exists when the problem is rooted in the values, assumptions, and behaviors of the people in the system — and when the solution requires those people to change. You cannot fix an adaptive challenge with a new policy. You cannot solve it by working harder or hiring a consultant. Adaptive challenges require the organization itself to learn and evolve.</p>
       </div>
-      <div class="choice-panel panel" id="constraints-barriers" data-choice-group="constraints">
-        <p><strong>Structural barriers to performance</strong> include policies, role boundaries, incentive systems, resource allocations, and cultural expectations that make desired behavior difficult. Removing these barriers often produces more reliable improvement than urging individuals to try harder within unchanged conditions.</p>
+      <div class="choice-panel panel" id="significant-problems" data-choice-group="problems">
+        <p>Most of the significant problems in complex organizations are adaptive challenges. And leaders who treat adaptive challenges as technical problems and reach for a procedural fix when a cultural shift is required will find that the problem returns, often in a different form.</p>
       </div>
     </div>
+  </div>
+  <div class="prompt-card">
+    <p>Reflection: Think about a persistent problem in your organization. Has it been addressed before? Did the solution hold? If not, is it possible that what appeared to be a technical problem is actually an adaptive challenge?</p>
   </div>
 </section>
 
 <section class="rise-block alt">
-  <h2>A Concrete Example: Reducing Patient Discharge Delays</h2>
-  <p>Consider a hospital unit where patients are routinely discharged late in the day. A narrow interpretation might blame physicians for entering orders late or nurses for not completing paperwork quickly enough. A systems interpretation begins with the visible delay but investigates how multiple parts of the system interact to create it.</p>
-  <div class="card-sequence">
-    <div class="sequence-card">
-      <div class="sequence-date">Upstream</div>
-      <p><strong>Upstream information shapes downstream work:</strong> If discharge readiness is not discussed during morning rounds, pharmacy, transportation, social work, and patient education tasks begin too late. The delay is not only a nursing task problem; it is a coordination problem created earlier in the day.</p>
+  <h2>Section 4: How Leaders Build and Reinforce the System — Schein, Chapter 10</h2>
+  <p>Here is something that may be uncomfortable to consider: the system you are trying to fix is, in large part, a product of leadership behavior.</p>
+  <p>In Chapter 10, Schein explains in precise terms how leaders embed and transmit culture — which is to say, how leaders build the operating logic of the organizational system over time. This is not about intent. Leaders do not set out to create dysfunctional systems. But through consistent patterns of behavior, they do.</p>
+  <p>Schein identifies several primary mechanisms through which leaders shape the system:</p>
+  <div class="mechanism-list">
+    <div class="mechanism-card">
+      <p>What leaders pay attention to, measure, and control. If a leader consistently focuses on speed and never asks about quality, the system learns that speed is what matters. If a leader consistently asks about revenue and never asks about employee wellbeing, the system learns what is actually valued — regardless of what the mission statement says.</p>
     </div>
-    <div class="sequence-card">
-      <div class="sequence-date">Flow</div>
-      <p><strong>Local optimization can harm whole-system flow:</strong> A physician may batch discharge orders after completing other clinical tasks because that workflow is efficient for the individual. Yet batching can create a surge for pharmacy and nursing, delaying beds for incoming patients.</p>
+    <div class="mechanism-card">
+      <p>How leaders react to critical incidents and crises. When something goes wrong, how a leader responds sends a powerful signal to the entire system. A leader who responds to failure with blame teaches the system to hide failure. A leader who responds with curiosity and problem-solving teaches the system to surface failure early, when it can still be corrected.</p>
     </div>
-    <div class="sequence-card">
-      <div class="sequence-date">Feedback</div>
-      <p><strong>Feedback determines whether the pattern changes:</strong> If the only metric reported is individual discharge order time, teams may miss broader constraints such as medication reconciliation, family transportation, or unclear accountability for patient teaching.</p>
+    <div class="mechanism-card">
+      <p>What leaders reward and punish. Formal reward systems matter, but informal signals matter even more. Who gets promoted? Whose ideas get acted on? Who gets excluded from key conversations? These patterns, repeated over time, define the actual operating norms of the system — not the stated ones.</p>
     </div>
-    <div class="sequence-card">
-      <div class="sequence-date">Redesign</div>
-      <p><strong>System redesign changes the conditions of performance:</strong> A more effective intervention might include discharge planning on admission, an interdisciplinary morning checklist, earlier pharmacy review, and real-time visibility of patients likely to leave that day.</p>
+    <div class="mechanism-card">
+      <p>Role modeling. Leaders communicate through behavior far more than through words. If a leader says "we value transparency" but withholds information from their team, the system learns from the behavior, not the statement.</p>
     </div>
   </div>
-  <p>The example shows why systems thinking matters for professional judgment. It encourages practitioners to ask not only "Who failed to act?" but also "What arrangement of work made this outcome likely, and where can the arrangement be improved?"</p>
+  <p>The implication for systems analysis is significant: if you want to understand why the system behaves the way it does, study the leadership behaviors that have been consistently modeled and rewarded over time. The system is not broken. It is doing exactly what it was built to do. The question is whether what it was built to do is still serving the organization's goals.</p>
+  <p>This is also where the leverage is. Because if leadership behavior built the system, then changing leadership behavior can change the system. You do not always need a reorganization, a new strategic plan, or a major investment. Sometimes the highest-leverage intervention is a change in what the leader pays attention to, how they respond to failure, and what they consistently model.</p>
 </section>
 
 <section class="rise-block">
-  <h2>Assumptions, Limitations, and Tradeoffs</h2>
-  <p>Systems thinking is powerful because it expands analysis beyond immediate causes, but it also requires disciplined judgment. A system perspective should deepen accountability, not dissolve it. Individuals still make choices, exercise expertise, and bear professional obligations; the point is to understand how the surrounding structure enables, constrains, or distorts those choices.</p>
-  <div class="accordion">
-    <div class="accordion-item open">
-      <div class="accordion-header">Assumptions</div>
-      <div class="accordion-content">
-      <ul>
-        <li><strong>Behavior is context-sensitive:</strong> Systems thinking assumes that people respond to incentives, norms, information, resources, and constraints. This does not deny agency; it explains why agency is exercised differently across settings.</li>
-        <li><strong>Patterns reveal structure:</strong> Repeated outcomes are treated as evidence that the system has a recurring logic, even when the pattern appears through different people or events.</li>
-      </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Limitations</div>
-      <div class="accordion-content">
-      <ul>
-        <li><strong>Boundaries are interpretive choices:</strong> Every system map includes some factors and excludes others. The chosen boundary affects what causes are visible and what solutions appear reasonable.</li>
-        <li><strong>Complexity can delay action:</strong> Because systems analysis reveals many connections, teams may overanalyze instead of making timely, reversible improvements.</li>
-      </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Tradeoffs</div>
-      <div class="accordion-content">
-      <ul>
-        <li><strong>Efficiency and resilience may compete:</strong> A lean process may reduce waste but leave little slack for disruption, learning, or surge demand.</li>
-        <li><strong>Standardization and adaptation must be balanced:</strong> Common procedures improve reliability, while local judgment allows professionals to respond to context and variation.</li>
-      </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="rise-block section-divider">
-  <h2>Leadership and Systems Thinking</h2>
-</section>
-
-<section class="rise-block">
-  <h2>Using Systems Thinking in Professional Practice</h2>
-  <p>Leadership from a systems perspective is less about commanding isolated fixes and more about shaping the conditions under which good work becomes easier to do. Leaders use systems thinking to frame problems, invite multiple perspectives, test assumptions, and monitor consequences over time.</p>
+  <h2>Section 5: Diagnosing the System — Schein, Chapter 13</h2>
+  <p>Now we get to the diagnostic work — and this is where your assignment begins to take shape.</p>
+  <p>In Chapter 13, Schein provides a structured approach to deciphering organizational culture — which, for our purposes, is the same as diagnosing the organizational system. The goal is not to evaluate whether the culture is good or bad, but to read it accurately: to understand what it is actually doing and why.</p>
   <div class="card-sequence">
     <div class="sequence-card">
-      <div class="sequence-date">Root causes</div>
-      <p>Leaders must identify root causes rather than symptoms. This requires asking how policies, incentives, workflows, and communication channels contribute to the issue before settling on an explanation.</p>
+      <div class="sequence-date">Observation</div>
+      <p>Schein's diagnostic approach begins with observation before interpretation. Before you draw any conclusions about your organization's system, you need to gather evidence. What behaviors do you consistently observe? What topics are avoided in meetings? What happens when someone raises a concern? What gets celebrated? What gets ignored?</p>
     </div>
     <div class="sequence-card">
-      <div class="sequence-date">System level</div>
-      <p>Effective leaders intervene at the system level by changing structures, not simply by exhorting people to perform better. A durable intervention may redesign a handoff, clarify authority, adjust staffing, or change what the organization measures.</p>
+      <div class="sequence-date">Pattern Recognition</div>
+      <p>From observation, you move to pattern recognition. Individual behaviors are data points. Patterns are the signal. If one person avoids conflict, that is a personality trait. If everyone avoids conflict, that is a systemic norm — and it is telling you something important about the underlying assumptions of the organization.</p>
     </div>
     <div class="sequence-card">
-      <div class="sequence-date">Impact</div>
-      <p>Small changes in key areas can create large organizational impact when they alter feedback loops, remove constraints, or improve coordination. The significance of a change depends on where it enters the system.</p>
+      <div class="sequence-date">Gap</div>
+      <p>The most diagnostic signal of all is the gap between espoused values and actual behavior. Every organization says it values communication, collaboration, and continuous improvement. The question is whether those values show up in practice. When they do not — when the stated value and the observed behavior are consistently different — that gap is where the system's inefficiency lives.</p>
     </div>
-    <div class="sequence-card">
-      <div class="sequence-date">Learning</div>
-      <p>Systems thinking turns professional practice into disciplined inquiry. Leaders and learners should treat outcomes as information about how the system is functioning, then use that information to refine judgment and improve future action.</p>
+  </div>
+  <div class="reveal-grid">
+    <div class="reveal-card">
+      <button class="reveal-btn" type="button">Consider a common example</button>
+      <div class="reveal-content">
+        <p>Consider a common example: an organization that states it values innovation but consistently punishes failure. The espoused value is innovation. The underlying assumption is that failure is unacceptable. The result is a system in which people propose only safe, incremental ideas — and the organization wonders why it is not innovating. The problem is not the people. The problem is the system structure.</p>
+      </div>
+    </div>
+    <div class="reveal-card">
+      <button class="reveal-btn" type="button">For your assignment</button>
+      <div class="reveal-content">
+        <p>Schein's deciphering process gives you a method for finding these gaps systematically. For your assignment, this is the analytical core: identify the stated values, observe the actual behaviors, name the gap, and trace the gap back to the structural or cultural assumption that is producing it.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="rise-block tint">
-  <h2>Concluding Insight for Students</h2>
-  <p>Systems thinking should change how students interpret problems and how they prepare for professional responsibility. It teaches that expert practice is not only the ability to solve a task in front of you; it is the ability to understand the conditions that make certain tasks, errors, conflicts, or successes more likely.</p>
-  <p class="callout2">As you study organizations, leadership, health care, education, policy, or any complex field, use systems thinking as a habit of disciplined attention.</p>
-  <p>Look for relationships before assigning blame, examine feedback before assuming linear causality, and ask how structures shape behavior before recommending solutions. The goal is not to see everything at once, but to see enough of the system to act with greater humility, precision, and responsibility.</p>
+  <h2>Section 6: Dangerous Silence — Edmondson, Chapter 4</h2>
+  <p>We have now established how to see the system and how to diagnose it. In this section, we examine one of the most common and most damaging systemic failure modes in organizations: silence.</p>
+  <p>In Chapter 4 of The Fearless Organization, Edmondson makes the case that silence in organizations is not neutral. It is not simply the absence of communication. It is an active failure mode — one that has measurable consequences for organizational performance, safety, and adaptability.</p>
+  <div class="accordion">
+    <div class="accordion-item open">
+      <div class="accordion-header">Withhold Information</div>
+      <div class="accordion-content">
+        <p>When people in an organization do not feel safe speaking up, they withhold information. They do not report errors. They do not raise concerns. They do not share ideas that might be unwelcome. And the system — which depends on information to function — begins to operate on incomplete data.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Information Flowing Accurately and Quickly</div>
+      <div class="accordion-content">
+        <p>Think about what this means from a systems perspective. Every organization depends on information flowing accurately and quickly through its structure. Decisions at the top depend on accurate information coming up from the front lines. Coordination between departments depends on honest communication across boundaries. Learning and improvement depend on the ability to surface what is not working and talk about it openly.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Self-Correct</div>
+      <div class="accordion-content">
+        <p>When silence enters the system, that information flow is disrupted. Leaders make decisions based on incomplete or filtered information. Problems that are visible to frontline employees remain invisible to leadership. Errors that could be caught early compound over time. The system loses its ability to self-correct.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">People Knew Something Was Wrong</div>
+      <div class="accordion-content">
+        <p>Edmondson documents this pattern across industries — from healthcare to aviation to financial services. In each case, the common thread is the same: people knew something was wrong, and they did not say so. Not because they were indifferent, but because the system had taught them that speaking up was not safe.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Systems Problem</div>
+      <div class="accordion-content">
+        <p>This is a systems problem, not a people problem. The individuals in these organizations were not uniquely cowardly or negligent. They were responding rationally to the incentives and signals of the system they were in. The system had been built — through leadership behavior, through cultural norms, through the accumulated history of what happened to people who raised concerns — to produce silence.</p>
+      </div>
+    </div>
+  </div>
+  <div class="prompt-card">
+    <p>For your assignment, this is a critical diagnostic lens. Ask yourself: In your organization, does information flow freely? Do frontline employees raise concerns to leadership? Do teams surface problems early, or do problems tend to surface only after they have become crises? If the answer suggests that silence is present, you have identified a systemic bottleneck — and you have found a leverage point.</p>
+  </div>
+</section>
+
+<section class="rise-block alt">
+  <h2>Section 7: The Fearless Workplace — Edmondson, Chapter 5</h2>
+  <p>If Chapter 4 shows you what the system looks like when silence is present, Chapter 5 shows you what it looks like when psychological safety is functioning.</p>
+  <p>Edmondson describes the fearless workplace not as a utopia, but as a specific organizational condition: one in which people believe that the interpersonal risk of speaking up is low enough that they will do it. They will raise concerns. They will admit mistakes. They will ask questions. They will challenge assumptions. They will offer ideas — even imperfect ones.</p>
+  <p class="callout2">The result is not a more comfortable workplace. It is a more effective one.</p>
+  <div class="lens-stack">
+    <div class="lens-item">
+      <p>When psychological safety is present, information moves faster. Problems are caught earlier. Learning happens continuously rather than in periodic, painful episodes. Teams adapt more quickly to changing conditions. And leaders have access to the full picture of what is actually happening in the organization — not the filtered, sanitized version that travels up through a fearful hierarchy.</p>
+    </div>
+    <div class="lens-item">
+      <p>From a systems thinking perspective, psychological safety is a leverage point — a place in the system where a relatively small change produces a disproportionately large effect. When a leader creates the conditions for psychological safety, they are not just improving morale. They are changing the information architecture of the entire system. They are removing a bottleneck that was suppressing the system's ability to learn, adapt, and perform.</p>
+    </div>
+    <div class="lens-item">
+      <p>Edmondson is also careful to note that psychological safety does not emerge from a single initiative or a team-building exercise. It is built through consistent, repeated leadership behavior over time — leaders who respond to bad news with curiosity rather than blame, who model vulnerability by admitting their own uncertainty, and who explicitly invite dissent and then demonstrate that dissent is welcome by acting on it.</p>
+    </div>
+    <div class="lens-item">
+      <p>This connects directly back to Schein's Chapter 10. The leader's behavior embeds the norms of the system. If you want a fearless workplace, you have to lead fearlessly, consistently, visibly, and over time.</p>
+    </div>
+  </div>
+  <div class="prompt-card">
+    <p>Application to Your Assignment: When you identify a leverage point in your organization, consider whether psychological safety is part of the picture. Is silence suppressing information that the system needs? If so, what specific leadership behaviors — modeled consistently over time — could begin to shift that norm?</p>
+  </div>
+</section>
+
+<section class="rise-block">
+  <h2>Section 8: Putting It Together — Leadership as a Systems Intervention</h2>
+  <p>We have now covered all the major conceptual tools for this week. Let us bring them together.</p>
+  <p>A systems-thinking leader does the following:</p>
+  <div class="card-sequence">
+    <div class="sequence-card">
+      <div class="sequence-date">First</div>
+      <p>First, they map the system. Using Schein's three-level framework, they identify what is visible, what is stated, and what is assumed. They look at the formal structure — the org chart, the workflows, the reporting relationships — and they look at the informal structure — the norms, the unspoken rules, the patterns of behavior that actually govern how work gets done.</p>
+    </div>
+    <div class="sequence-card">
+      <div class="sequence-date">Second</div>
+      <p>Second, they get on the balcony. Using Heifetz and Laurie's framework, they step back from the daily operational reality and observe the organization as a whole. They look for patterns. They distinguish between technical problems and adaptive challenges. They resist the temptation to reach for a quick fix when a structural intervention is what is actually needed.</p>
+    </div>
+    <div class="sequence-card">
+      <div class="sequence-date">Third</div>
+      <p>Third, they diagnose the system. Using Schein's deciphering process, they identify the gaps between stated values and actual behavior. They trace those gaps back to the structural or cultural assumptions that are producing them. They name the bottlenecks — the places where work accumulates, where communication breaks down, where decisions slow to a halt.</p>
+    </div>
+    <div class="sequence-card">
+      <div class="sequence-date">Fourth</div>
+      <p>Fourth, they identify leverage points. Not every part of the system is equally influential. Some places, when changed, produce cascading effects throughout the system. Psychological safety is one of the most powerful of these leverage points. So is the behavior of senior leadership. So is the way the organization responds to failure. A systems-thinking leader looks for these high-leverage places and intervenes there — rather than trying to fix everything at once.</p>
+    </div>
+    <div class="sequence-card">
+      <div class="sequence-date">Fifth</div>
+      <p>Fifth, they act with patience and consistency. Systems do not change overnight. The norms, assumptions, and feedback loops that define an organization's behavior were built over years of accumulated experience. Changing them requires consistent, sustained leadership behavior — not a single initiative or a one-time announcement. The leader who understands this does not get discouraged when change is slow. They understand that they are working with the grain of the system, gradually shifting the forces that produce behavior.</p>
+    </div>
+  </div>
+</section>
+
+<section class="rise-block alt">
+  <h2>Section 9: Applying This to Your Assignment</h2>
+  <p>Your assignment this week asks you to conduct a systems-level analysis of your selected organization. Here is how to approach it using the frameworks from this lecture:</p>
+  <div class="choice-block">
+    <div class="choice-menu">
+      <button class="choice-btn active" type="button" data-choice-group="assignment" data-choice-target="step-1">Step 1 — Map the System</button>
+      <button class="choice-btn" type="button" data-choice-group="assignment" data-choice-target="step-2">Step 2 — Observe from the Balcony</button>
+      <button class="choice-btn" type="button" data-choice-group="assignment" data-choice-target="step-3">Step 3 — Diagnose the Inefficiencies</button>
+      <button class="choice-btn" type="button" data-choice-group="assignment" data-choice-target="step-4">Step 4 — Assess Information Flow</button>
+      <button class="choice-btn" type="button" data-choice-group="assignment" data-choice-target="step-5">Step 5 — Identify Leverage Points and Recommendations</button>
+    </div>
+    <div>
+      <div class="choice-panel active panel" id="step-1" data-choice-group="assignment">
+        <p>Step 1 — Map the System (Schein, Chapter 2) Describe the key components of your organization: its departments, leadership structure, workflows, and formal reporting relationships. Then go deeper. What are the stated values? What are the actual operating norms? Where do you see gaps between what is espoused and what is practiced?</p>
+      </div>
+      <div class="choice-panel panel" id="step-2" data-choice-group="assignment">
+        <p>Step 2 — Observe from the Balcony (Heifetz &amp; Laurie) Describe the organization from a high-level perspective. What patterns do you observe? Where does the system seem to be working well? Where does it seem to be under stress? Are the major challenges your organization faces technical problems or adaptive challenges? This distinction will shape your recommendations.</p>
+      </div>
+      <div class="choice-panel panel" id="step-3" data-choice-group="assignment">
+        <p>Step 3 — Diagnose the Inefficiencies (Schein, Chapter 13) Identify the specific bottlenecks, breakdowns, or misalignments in your organization's system. Where does work slow down? Where does communication break down? Where do decisions get stuck? Trace these inefficiencies back to their structural or cultural roots — not to individual performance.</p>
+      </div>
+      <div class="choice-panel panel" id="step-4" data-choice-group="assignment">
+        <p>Step 4 — Assess Information Flow (Edmondson, Chapters 4 &amp; 5) Ask whether silence is present in your organization's system. Do people speak up? Does information flow accurately from the front lines to leadership? If you identify silence as a bottleneck, describe how it is affecting the system's performance — and what a fearless workplace would look like in contrast.</p>
+      </div>
+      <div class="choice-panel panel" id="step-5" data-choice-group="assignment">
+        <p>Step 5 — Identify Leverage Points and Recommendations (Schein, Chapter 10) Identify two or three specific places in the system where a targeted leadership intervention could produce significant improvement. Connect your recommendations to leadership behavior — what would leaders need to do differently, consistently, over time, to shift the system? Ground your recommendations in the readings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rise-block tint">
+  <h2>Closing Thoughts</h2>
+  <p>Systems thinking is not a technique. It is a way of seeing. And like any skill, it develops with practice.</p>
+  <p class="callout2">The most important thing you can take from this week is the habit of asking a different question when something goes wrong. Not "Who is responsible?" but "What is the structure producing this outcome?" Not "How do we fix this problem?" but "Why does this problem keep coming back?"</p>
 </section>
 
 </div>
