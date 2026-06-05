@@ -33,10 +33,17 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 .cover-btn:hover { background:#0066d1; }
 .hero { border-top:.8rem solid var(--blue); background:linear-gradient(180deg,#fff,#f7fbff); }
 .callout { border-left:.6rem solid var(--blue); padding:1.8rem 2.2rem; background:#f4f9ff; border-radius:.4rem; margin:var(--space-sm) 0; font-weight:650; }
+.callout2 { text-align:center; font-size:2.3rem; line-height:1.6; color:#1a1a1a; max-width:76rem; margin:3.6rem auto; padding:2rem 1rem; position:relative; }
+.callout2::before { content:""; width:6rem; height:.3rem; background:var(--green); border-radius:1rem; display:block; margin:0 auto 2rem; }
+.circle-list { padding-left:0 !important; list-style:none; margin-top:2rem; display:grid; gap:1.2rem; }
+.circle-list li { display:flex; align-items:flex-start; margin:0; }
+.circle-num { width:3.2rem; height:3.2rem; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; margin-right:1rem; flex:0 0 auto; line-height:1; }
 .split { display:grid; grid-template-columns:minmax(0,1fr) minmax(28rem,.8fr); gap:3rem; align-items:start; }
 .panel { border:1px solid var(--line); border-radius:.8rem; padding:2.2rem; background:#fff; }
 .panel.green { border-left:.5rem solid var(--green); }
-.grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.8rem; margin-top:2rem; }
+.grid-3, .grid-2 { display:grid; gap:1.8rem; margin-top:2rem; }
+.grid-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .mini-card { border:1px solid var(--line); border-radius:.8rem; padding:2rem; background:#fff; min-height:100%; }
 .mini-card h3, .mini-card h4 { color:#0d3155; }
 .reveal-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(23rem,1fr)); gap:1.6rem; margin-top:2rem; }
@@ -44,6 +51,11 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 .reveal-btn { width:100%; border:0; background:#eef6ff; color:#10243a; padding:1.6rem; font-size:1.8rem; font-weight:700; text-align:left; cursor:pointer; }
 .reveal-content { display:none; padding:1.8rem; }
 .reveal-card.open .reveal-content { display:block; }
+.accordion { border:1px solid #d9e1ea; border-radius:.8rem; overflow:hidden; background:#fff; margin-top:2rem; }
+.accordion-item + .accordion-item { border-top:1px solid #d9e1ea; }
+.accordion-header { background:#f7f9fb; padding:1.6rem 1.8rem; cursor:pointer; font-size:1.8rem; font-weight:700; }
+.accordion-content { display:none; padding:1.8rem; background:#fff; }
+.accordion-item.open .accordion-content { display:block; }
 .rise-tabs { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.6rem; }
 .tab-btn { padding:.9rem 1.5rem; border-radius:.7rem; border:1px solid #cbd7e5; background:#fff; cursor:pointer; font-size:1.6rem; font-weight:650; }
 .tab-btn.active { background:#eaf4ff; border-color:#7dbaff; color:#07315b; }
@@ -59,11 +71,19 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 .choice-btn.active { border-color:var(--blue); background:#eaf4ff; }
 .choice-panel { display:none; }
 .choice-panel.active { display:block; }
+.comparison { display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; margin-top:2rem; }
+.comparison .panel:first-child { border-top:.5rem solid #7a8a9a; }
+.comparison .panel:last-child { border-top:.5rem solid var(--green); }
+.quote-line { border-block:1px solid var(--line); padding:2.4rem 0; font-weight:700; color:#1b2d40; }
 .section-divider { text-align:center; background:#fff; border-top:.6rem solid var(--green); box-shadow:0 .4rem 1.6rem rgba(0,0,0,.04); }
 .section-divider h2 { margin-bottom:0; }
+.continue-wrap { width:100%; margin:3rem 0; }
+.continue-btn { width:100%; border:0; border-radius:.8rem; background:#006649; color:#fff; min-height:6.4rem; font-size:1.9rem; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 .4rem 1.6rem rgba(0,102,73,.18); transition:background .2s ease, transform .2s ease; }
+.continue-btn:hover { background:#00563e; transform:translateY(-1px); }
+.continue-btn:focus-visible { outline:.3rem solid #7dbaff; outline-offset:.3rem; }
 @media (max-width:850px) {
   .rise-shell__header { align-items:flex-start; flex-direction:column; }
-  .split, .grid-3, .choice-block { grid-template-columns:1fr; }
+  .split, .grid-2, .grid-3, .choice-block, .comparison { grid-template-columns:1fr; }
   .rise-block { padding:3rem 2rem; margin-block:4rem; }
   .rise-page { padding:0 1.8rem; }
 }
@@ -95,20 +115,37 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 <section class="rise-block hero">
   <h1>Introduction to Systems Thinking</h1>
   <p>Systems thinking is an approach to interpretation and decision-making that examines how parts of a whole interact over time. Instead of treating a problem as a single event caused by one person, one department, or one visible failure, systems thinking asks how relationships, incentives, information flows, structures, and feedback patterns produce the outcomes we observe.</p>
-  <p>Its purpose is practical as well as analytical. A systems thinker learns to see patterns beneath symptoms, to anticipate consequences that may emerge later or elsewhere, and to design interventions that improve the conditions under which people work. In organizations, this means viewing performance, culture, learning, safety, and innovation as products of interdependent arrangements rather than isolated acts of individual effort.</p>
   <div class="callout">Organizations are interconnected systems, not isolated functions; changes in one area can reshape behavior throughout the whole.</div>
-  <div class="grid-3">
-    <div class="mini-card">
-      <h3>Relationships</h3>
-      <p>Understanding relationships is often more important than analyzing individual components, because components gain meaning through the roles they play in relation to one another.</p>
+</section>
+
+<section class="rise-block tint">
+  <h2>Purpose of the Approach</h2>
+  <div class="split">
+    <div>
+      <p>Its purpose is practical as well as analytical. A systems thinker learns to see patterns beneath symptoms, to anticipate consequences that may emerge later or elsewhere, and to design interventions that improve the conditions under which people work. In organizations, this means viewing performance, culture, learning, safety, and innovation as products of interdependent arrangements rather than isolated acts of individual effort.</p>
     </div>
-    <div class="mini-card">
-      <h3>Patterns</h3>
-      <p>Systems thinking studies recurring patterns, not only isolated incidents. A repeated delay, error, or conflict usually signals an underlying structure that makes the pattern likely.</p>
+    <div class="panel green">
+      <h3>Three Core Moves</h3>
+      <ul class="circle-list">
+        <li><div class="circle-num">1</div><span><strong>Relationships:</strong> Understanding relationships is often more important than analyzing individual components, because components gain meaning through the roles they play in relation to one another.</span></li>
+        <li><div class="circle-num">2</div><span><strong>Patterns:</strong> Systems thinking studies recurring patterns, not only isolated incidents. A repeated delay, error, or conflict usually signals an underlying structure that makes the pattern likely.</span></li>
+        <li><div class="circle-num">3</div><span><strong>Design:</strong> Problems often arise from system design rather than individual performance. This perspective shifts inquiry from blame toward learning, redesign, and shared accountability.</span></li>
+      </ul>
     </div>
-    <div class="mini-card">
-      <h3>Design</h3>
-      <p>Problems often arise from system design rather than individual performance. This perspective shifts inquiry from blame toward learning, redesign, and shared accountability.</p>
+  </div>
+</section>
+
+<section class="rise-block">
+  <h2>From Event Thinking to Systems Thinking</h2>
+  <p class="quote-line">Systems thinking widens the frame of analysis before narrowing toward action.</p>
+  <div class="comparison">
+    <div class="panel">
+      <h3>Narrow Interpretation</h3>
+      <p>A narrow interpretation treats a problem as a single event caused by one person, one department, or one visible failure. This can produce fast explanations, but it often misses the relationships, incentives, information flows, structures, and feedback patterns that produce the outcomes we observe.</p>
+    </div>
+    <div class="panel">
+      <h3>Systems Interpretation</h3>
+      <p>A systems interpretation asks how parts of a whole interact over time. It does not remove individual responsibility; it places action inside the conditions that make some choices, constraints, and outcomes more likely than others.</p>
     </div>
   </div>
 </section>
@@ -116,23 +153,28 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 <section class="rise-block alt">
   <h2>Organizational Systems and Interdependencies</h2>
   <p>An organizational system includes the people, tools, routines, policies, technologies, norms, and external pressures that interact to produce work. These elements are not merely arranged side by side; they shape one another. A policy changes incentives, incentives shape behavior, behavior affects performance data, and performance data influence future policy choices.</p>
-  <p>Interdependence means that no unit is fully self-contained. A team may appear responsible for an outcome, yet that outcome may depend on upstream information, staffing levels, budget rules, leadership priorities, customer expectations, and the design of the work itself. Systems thinking therefore widens the frame of analysis before narrowing toward action.</p>
-  <div class="reveal-grid">
-    <div class="reveal-card">
-      <button class="reveal-btn" type="button">Inputs, processes, and outputs</button>
-      <div class="reveal-content">
+  <div class="accordion">
+    <div class="accordion-item open">
+      <div class="accordion-header">Interdependence</div>
+      <div class="accordion-content">
+        <p>Interdependence means that no unit is fully self-contained. A team may appear responsible for an outcome, yet that outcome may depend on upstream information, staffing levels, budget rules, leadership priorities, customer expectations, and the design of the work itself. Systems thinking therefore widens the frame of analysis before narrowing toward action.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Inputs, processes, and outputs</div>
+      <div class="accordion-content">
         <p><strong>Inputs, processes, and outputs</strong> provide a basic way to map how work is transformed. Inputs such as information, materials, time, expertise, and funding enter a process; routines and decisions transform them; outputs emerge as products, services, decisions, or learning. The quality of an output cannot be interpreted without examining the conditions built into the input and process stages.</p>
       </div>
     </div>
-    <div class="reveal-card">
-      <button class="reveal-btn" type="button">Dependencies</button>
-      <div class="reveal-content">
+    <div class="accordion-item">
+      <div class="accordion-header">Dependencies</div>
+      <div class="accordion-content">
         <p><strong>Dependencies between departments, teams, and leadership</strong> determine whether work flows smoothly or becomes fragmented. A hiring process, for example, may depend on accurate role definitions from managers, timely approvals from finance, inclusive search practices from human resources, and clear strategic priorities from executives.</p>
       </div>
     </div>
-    <div class="reveal-card">
-      <button class="reveal-btn" type="button">Misalignment</button>
-      <div class="reveal-content">
+    <div class="accordion-item">
+      <div class="accordion-header">Misalignment</div>
+      <div class="accordion-content">
         <p><strong>Misalignment between functions</strong> creates inefficiency when different parts of the system optimize for different goals. A sales unit rewarded for rapid growth may create demand that operations cannot support, while operations may be judged for stability and cost control. Neither unit is necessarily failing; the system may be rewarding incompatible forms of success.</p>
       </div>
     </div>
@@ -176,10 +218,21 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
   </div>
 </section>
 
-<section class="rise-block tint">
-  <h2>Identifying System Constraints</h2>
+<section class="rise-block section-divider">
+  <h2>Finding Constraints</h2>
+</section>
+
+<section class="rise-block">
+  <h2>Before Looking for Constraints</h2>
   <p>A constraint is a feature of the system that limits performance, learning, responsiveness, or equity. Constraints are not always obvious. They may appear as slow approvals, missing information, conflicting priorities, limited authority, inaccessible tools, or cultural norms that discourage raising concerns.</p>
   <p>Identifying constraints requires distinguishing between the place where a problem is visible and the place where it is produced. A frontline team may experience late work, but the deeper constraint may be an approval rule, an overloaded specialist, a poorly designed handoff, or a leadership practice that creates ambiguity.</p>
+  <div class="continue-wrap">
+    <button class="continue-btn" type="button" data-reveal-target="constraint-types">Explore Constraint Types</button>
+  </div>
+</section>
+
+<section class="rise-block tint" id="constraint-types" hidden>
+  <h2>Identifying System Constraints</h2>
   <div class="choice-block">
     <div class="choice-menu">
       <button class="choice-btn active" type="button" data-choice-group="constraints" data-choice-target="constraints-bottlenecks">Bottlenecks</button>
@@ -203,39 +256,57 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 <section class="rise-block alt">
   <h2>A Concrete Example: Reducing Patient Discharge Delays</h2>
   <p>Consider a hospital unit where patients are routinely discharged late in the day. A narrow interpretation might blame physicians for entering orders late or nurses for not completing paperwork quickly enough. A systems interpretation begins with the visible delay but investigates how multiple parts of the system interact to create it.</p>
-  <ul>
-    <li><strong>Upstream information shapes downstream work:</strong> If discharge readiness is not discussed during morning rounds, pharmacy, transportation, social work, and patient education tasks begin too late. The delay is not only a nursing task problem; it is a coordination problem created earlier in the day.</li>
-    <li><strong>Local optimization can harm whole-system flow:</strong> A physician may batch discharge orders after completing other clinical tasks because that workflow is efficient for the individual. Yet batching can create a surge for pharmacy and nursing, delaying beds for incoming patients.</li>
-    <li><strong>Feedback determines whether the pattern changes:</strong> If the only metric reported is individual discharge order time, teams may miss broader constraints such as medication reconciliation, family transportation, or unclear accountability for patient teaching.</li>
-    <li><strong>System redesign changes the conditions of performance:</strong> A more effective intervention might include discharge planning on admission, an interdisciplinary morning checklist, earlier pharmacy review, and real-time visibility of patients likely to leave that day.</li>
-  </ul>
+  <div class="card-sequence">
+    <div class="sequence-card">
+      <div class="sequence-date">Upstream</div>
+      <p><strong>Upstream information shapes downstream work:</strong> If discharge readiness is not discussed during morning rounds, pharmacy, transportation, social work, and patient education tasks begin too late. The delay is not only a nursing task problem; it is a coordination problem created earlier in the day.</p>
+    </div>
+    <div class="sequence-card">
+      <div class="sequence-date">Flow</div>
+      <p><strong>Local optimization can harm whole-system flow:</strong> A physician may batch discharge orders after completing other clinical tasks because that workflow is efficient for the individual. Yet batching can create a surge for pharmacy and nursing, delaying beds for incoming patients.</p>
+    </div>
+    <div class="sequence-card">
+      <div class="sequence-date">Feedback</div>
+      <p><strong>Feedback determines whether the pattern changes:</strong> If the only metric reported is individual discharge order time, teams may miss broader constraints such as medication reconciliation, family transportation, or unclear accountability for patient teaching.</p>
+    </div>
+    <div class="sequence-card">
+      <div class="sequence-date">Redesign</div>
+      <p><strong>System redesign changes the conditions of performance:</strong> A more effective intervention might include discharge planning on admission, an interdisciplinary morning checklist, earlier pharmacy review, and real-time visibility of patients likely to leave that day.</p>
+    </div>
+  </div>
   <p>The example shows why systems thinking matters for professional judgment. It encourages practitioners to ask not only "Who failed to act?" but also "What arrangement of work made this outcome likely, and where can the arrangement be improved?"</p>
 </section>
 
 <section class="rise-block">
   <h2>Assumptions, Limitations, and Tradeoffs</h2>
   <p>Systems thinking is powerful because it expands analysis beyond immediate causes, but it also requires disciplined judgment. A system perspective should deepen accountability, not dissolve it. Individuals still make choices, exercise expertise, and bear professional obligations; the point is to understand how the surrounding structure enables, constrains, or distorts those choices.</p>
-  <div class="grid-3">
-    <div class="mini-card">
-      <h3>Assumptions</h3>
+  <div class="accordion">
+    <div class="accordion-item open">
+      <div class="accordion-header">Assumptions</div>
+      <div class="accordion-content">
       <ul>
         <li><strong>Behavior is context-sensitive:</strong> Systems thinking assumes that people respond to incentives, norms, information, resources, and constraints. This does not deny agency; it explains why agency is exercised differently across settings.</li>
         <li><strong>Patterns reveal structure:</strong> Repeated outcomes are treated as evidence that the system has a recurring logic, even when the pattern appears through different people or events.</li>
       </ul>
+      </div>
     </div>
-    <div class="mini-card">
-      <h3>Limitations</h3>
+    <div class="accordion-item">
+      <div class="accordion-header">Limitations</div>
+      <div class="accordion-content">
       <ul>
         <li><strong>Boundaries are interpretive choices:</strong> Every system map includes some factors and excludes others. The chosen boundary affects what causes are visible and what solutions appear reasonable.</li>
         <li><strong>Complexity can delay action:</strong> Because systems analysis reveals many connections, teams may overanalyze instead of making timely, reversible improvements.</li>
       </ul>
+      </div>
     </div>
-    <div class="mini-card">
-      <h3>Tradeoffs</h3>
+    <div class="accordion-item">
+      <div class="accordion-header">Tradeoffs</div>
+      <div class="accordion-content">
       <ul>
         <li><strong>Efficiency and resilience may compete:</strong> A lean process may reduce waste but leave little slack for disruption, learning, or surge demand.</li>
         <li><strong>Standardization and adaptation must be balanced:</strong> Common procedures improve reliability, while local judgment allows professionals to respond to context and variation.</li>
       </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -270,7 +341,8 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 <section class="rise-block tint">
   <h2>Concluding Insight for Students</h2>
   <p>Systems thinking should change how students interpret problems and how they prepare for professional responsibility. It teaches that expert practice is not only the ability to solve a task in front of you; it is the ability to understand the conditions that make certain tasks, errors, conflicts, or successes more likely.</p>
-  <p>As you study organizations, leadership, health care, education, policy, or any complex field, use systems thinking as a habit of disciplined attention. Look for relationships before assigning blame, examine feedback before assuming linear causality, and ask how structures shape behavior before recommending solutions. The goal is not to see everything at once, but to see enough of the system to act with greater humility, precision, and responsibility.</p>
+  <p class="callout2">As you study organizations, leadership, health care, education, policy, or any complex field, use systems thinking as a habit of disciplined attention.</p>
+  <p>Look for relationships before assigning blame, examine feedback before assuming linear causality, and ask how structures shape behavior before recommending solutions. The goal is not to see everything at once, but to see enough of the system to act with greater humility, precision, and responsibility.</p>
 </section>
 
 </div>
@@ -280,6 +352,12 @@ body { margin:0; min-height:100vh; min-height:100dvh; background:#ffffff; font-f
 <script>
 document.getElementById('coverBegin').addEventListener('click', () => {
   document.getElementById('cover').classList.add('hidden');
+});
+
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.parentElement.classList.toggle('open');
+  });
 });
 
 document.querySelectorAll('.reveal-btn').forEach(button => {
@@ -314,6 +392,17 @@ document.querySelectorAll('.choice-btn').forEach(button => {
     button.classList.add('active');
     const target = block.querySelector('#' + targetId);
     if (target) target.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.continue-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const target = document.getElementById(button.dataset.revealTarget);
+    if (!target) return;
+    target.hidden = false;
+    const wrapper = button.closest('.continue-wrap');
+    if (wrapper) wrapper.hidden = true;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 </script>
